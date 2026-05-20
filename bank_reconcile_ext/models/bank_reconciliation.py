@@ -46,7 +46,7 @@ class BankReconiliation(models.Model):
     def onchange_journal_id(self):
         for record in self:
             if record.journal_id:
-                record.bank_account_id = record.journal_id.payment_debit_account_id.id
+                record.bank_account_id = record.journal_id.default_account_id.id
             else:
                 record.bank_account_id = False
 

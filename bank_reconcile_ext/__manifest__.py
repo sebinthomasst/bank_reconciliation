@@ -3,7 +3,7 @@
 
 {
     "name": "Bank Reconciliation",
-    "version": "14.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Accounting",
     "summary": "Reconcile bank statements with GL account entries",
     "description": """
@@ -27,5 +27,5 @@ This module allows you to easily reconcile bank statements with GL account entri
     "auto_install": False,
     "installable": True,
     "application": True,
-    "license": "AGPL-3",
+    "license": "LGPL-3",
 }
