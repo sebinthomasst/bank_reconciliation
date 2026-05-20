@@ -35,8 +35,8 @@ class TestBankReconciliation(TransactionCase):
             'code': 'TBNK',
             'type': 'bank',
         })
-        cls.bank_journal.payment_debit_account_id = cls.bank_account.id
-        cls.bank_journal.payment_credit_account_id = cls.bank_account.id
+        cls.bank_journal.default_debit_account_id = cls.bank_account.id
+        cls.bank_journal.default_credit_account_id = cls.bank_account.id
         
         # Create and post some test entries (Move 1 - Debit)
         cls.move_debit = cls.env['account.move'].create({

@@ -46,7 +46,7 @@ class BankReconiliation(models.Model):
     def onchange_journal_id(self):
         for record in self:
             if record.journal_id:
-                record.bank_account_id = record.journal_id.payment_debit_account_id.id
+                record.bank_account_id = record.journal_id.default_debit_account_id.id
             else:
                 record.bank_account_id = False
 
@@ -160,13 +160,13 @@ class BankReconiliation(models.Model):
                                 for invoice in payment.reconciled_invoice_ids:
                                     currencies = invoice._get_lines_onchange_currency().currency_id
                                     currency = len(currencies) == 1 and currencies or invoice.company_id.currency_id
-                                    if invoice.is_invoice(include_receipts=True) and invoice.state == 'posted' and invoice.payment_state == 'in_payment':
+                                    if invoice.type in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt') and invoice.state == 'posted' and invoice.invoice_payment_state == 'in_payment':
                                         if currency.is_zero(invoice.amount_residual):
                                             reconciled_payments = invoice._get_reconciled_payments()
                                             if not reconciled_payments or all(rp.is_matched for rp in reconciled_payments):
-                                                invoice.payment_state = 'paid'
+                                                invoice.invoice_payment_state = 'paid'
                                             else:
-                                                invoice.payment_state = invoice._get_invoice_in_payment_state()
+                                                invoice.invoice_payment_state = invoice._get_invoice_in_payment_state()
             if not reconciled_lines_found:
                 raise UserError(_("No lines have been reconciled."))
         else:

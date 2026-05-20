@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Odoo 18.0 reconciliation report
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 
