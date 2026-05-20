@@ -27,5 +27,6 @@ This module allows you to easily reconcile bank statements with GL account entri
     "auto_install": False,
     "installable": True,
     "application": True,
+    "icon": "static/description/icon.png",
     "license": "LGPL-3",
 }
