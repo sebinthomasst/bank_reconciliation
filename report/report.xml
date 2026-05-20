@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <report
+            id="cash_sales_reports"
+            model="bank.reconciliation"
+            string="Bank Reconciliation Report"
+            report_type="xlsx"
+            name="bank_reconciliation.reconciliation_report"
+            file="Reconciliation Report"
+            attachment_use="False"
+            menu="True"
+            />
+        
+     
+    </data>
+</odoo>

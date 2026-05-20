@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+   <record id="group_nobody" model="res.groups">
+            <field name="name">Nobody</field>
+        </record>
+   </data>
+</odoo>
+ 

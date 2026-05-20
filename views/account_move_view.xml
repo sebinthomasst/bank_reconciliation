@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+   
+   <record id="moveline_reconciliation_form_new" model="ir.ui.view">
+	   <field name="name">account.move.line.reconcilation.inherit</field>
+	   <field name="model">account.move.line</field>
+	   <field name="inherit_id" ref="account.view_move_line_form"></field>
+	   <field name="arch" type="xml">
+	   
+		   <xpath expr ="//field[@name='date_maturity']" position="after">
+			   	<field name ="reconcilation_id"/>
+			   	<field name="rec_date"/> 
+		   </xpath>
+	   
+	   </field>
+	   
+   </record>
+   
+   
+</odoo>

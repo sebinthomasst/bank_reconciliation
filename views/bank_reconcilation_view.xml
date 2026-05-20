@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <record id="bank_reconciliation_tree_new" model="ir.ui.view">
+            <field name="name">bank.reconciliation.tree</field>
+            <field name="model">bank.reconciliation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">    
+       		<tree  string="Bank Reconciliation">
+       		<field name="name"/>	
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                    <field name="journal_id"/>
+                    <field name="state"/>
+           </tree>
+           </field>
+    </record>
+ 
+     <record id="bank_reconciliation_search_new" model="ir.ui.view">
+            <field name="name">bank.reconciliation.search</field>
+            <field name="model">bank.reconciliation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">    
+       		<search  string="Bank Reconciliation">
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                    <field name="journal_id"/>
+           </search>
+           </field>
+    </record>
+ 
+         <record id="bank_reconciliation_form_new" model="ir.ui.view">
+            <field name="name">bank.reconciliation.form</field>
+            <field name="model">bank.reconciliation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Bank Reconciliation">
+                <header>
+                <button string="Validate" type="object" name="validate" class="oe_highlight" attrs="{'invisible':[('state','=','validated')]}"/>
+                
+                <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                <h1>
+				 <field name="name"  readonly="1"/>
+				</h1>
+                <group>
+	                <group>
+	                 <field name="journal_id" domain="[('type', '=', 'bank')]" attrs="{'readonly':[('state','=','validated')]}"/>
+                     <field name="bank_account_id" required="True" domain="[('user_type_id.name', '=', 'Bank and Cash')]" attrs="{'readonly':[('state','=','validated')]}"/>
+	                 <field name="from_date" attrs="{'readonly':[('state','=','validated')]}" />
+                     <field name="to_date" attrs="{'readonly':[('state','=','validated')]}"/>
+                     <field name="type" invisible="1"/>
+	                </group>
+	                <group>
+	                <field name="closing_balance_stmt" readonly="0"/>
+	                <field name="opening_balance_stmt" invisible="1"/>
+	                <field name="debit"/>
+	                <field name="credit"/>
+	                <field name="opening_balance" readonly="1" invisible="1"/>
+	                <field name="closing_balance" readonly="1"/>
+	                <field name="difference" readonly="0"/>
+<!-- 	                <button class="oe_highlight" name="select_all" string="Select All" type="object"/>
+ -->                     
+	                </group>
+                 <group col="3" colspan="1">
+	                <button class="oe_highlight"
+                                    name="update_record" string="Reload" icon ="fa-refresh" attrs="{'invisible':[('state','=','validated')]}"
+                                    type="object" confirm="All the modifications made will be reset. Do you want to continue ?"/>
+                     <button class="oe_highlight" name="select_all" string="Select All" type="object"/>
+                      <button class="oe_highlight" name="unselect_all" string="Unselect All" type="object"/>               
+                     </group>
+                </group>
+                <field name="reconcileline_ids" editable="bottom"  >
+                     	<tree editable="bottom" create ="false" >
+                     	<field name="date"  readonly="1"/>
+                     	<field name="document_no" readonly="1"/>
+                     	<field name="partner_id" readonly="1"/>
+                     	<field name="cheque_no" readonly="1"/>
+                     	<!-- <field name="move_line_id"/> -->
+                     	<field name="reference" readonly="1"/>
+                     	<field name ="debit" sum="Total Debit" readonly="1"/>
+                     	<field name="credit" sum ="Total Credit" readonly="1"/>
+                     	<field name ="reconciled" attrs="{'readonly':[('state','=','validated')]}" />
+                     	<field name ="reconciled_done" invisible="1"/>
+                     	<field name ="rec_date" readonly="1"/>
+                     	<field name ="state" readonly="1"/>
+                     	</tree>
+                     </field>
+                
+                </sheet>
+                
+                
+ 				</form>
+ 				</field>
+ 				</record>   
+   
+   
+	    <record model="ir.actions.act_window" id="action_bank_reconciliation_new">
+            <field name="name">Bank Reconciliation</field>
+            <field name="res_model">bank.reconciliation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	   
+   
+   <menuitem id="bank_reconciliation_menu" action="action_bank_reconciliation_new"
+            parent="account.menu_finance_entries" name="Bank Reconciliation"
+            groups="account.group_account_manager" sequence="28"/>
+            
+   <record id="account_accountant.menu_action_manual_reconciliation" model="ir.ui.menu">
+    <field name="groups_id" eval="[(4,ref('group_nobody'))]"/>
+    </record>
+   </odoo>

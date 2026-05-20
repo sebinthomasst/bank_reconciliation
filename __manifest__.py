@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+{
+    "name": "Bank Reconciliation",
+    "version": "14.0.1.0.0",
+    "category": "Accounting",
+    "summary": "Reconcile bank statements with GL account entries",
+    "description": """
+Bank Reconciliation Module
+==========================
+This module allows you to easily reconcile bank statements with GL account entries.
+    """,
+    "author": "Sebin Thomas",
+    "depends": [
+        'account',
+        'report_xlsx',
+    ],
+    "data": [
+        'security/ir.model.access.csv',
+        'security/user_group.xml',
+        'views/bank_reconcilation_view.xml',
+        'views/account_move_view.xml',
+        'views/sequence.xml',
+        'report/report.xml',
+    ],
+    "auto_install": False,
+    "installable": True,
+    "application": True,
+    "license": "AGPL-3",
+}
