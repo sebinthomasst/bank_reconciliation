@@ -6,7 +6,7 @@
     "version": "14.0.1.0.0",
     "category": "Accounting",
     "summary": "Reconcile bank statements with GL account entries",
-    "description": """
+    "description": "<p>Bank Reconciliation Module allows you to easily reconcile bank statements with GL account entries.</p>",
 Bank Reconciliation Module
 ==========================
 This module allows you to easily reconcile bank statements with GL account entries.
